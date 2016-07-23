@@ -235,6 +235,126 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/23/Android/myview_pie/" itemprop="url">
+                  MyViewDemo之饼状图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-23T21:53:09+08:00" content="2016-07-23">
+              2016-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>今天在空余时间学了一会关于自定义View的实现, 想着以后在<a href="https://github.com/zhangyuting11/MyViewDemo" target="_blank" rel="external">MyViewDemo</a><br>做一系列的有意思的自定义View。这一次的自定义view实践主要了解一下自定义view的实现过程</p>
+</blockquote>
+<ul>
+<li><h4 id="Demo展示"><a href="#Demo展示" class="headerlink" title="Demo展示"></a>Demo展示</h4><img src="https://github.com/zhangyuting11/MyViewDemo/raw/master/gif/gifpie.gif" alt="image">   </li>
+</ul>
+<ul>
+<li><h4 id="关于View的实现过程"><a href="#关于View的实现过程" class="headerlink" title="关于View的实现过程"></a>关于View的实现过程</h4></li>
+</ul>
+<ol>
+<li>view的测量获取其宽高</li>
+<li>view的绘制</li>
+<li>view的刷新</li>
+</ol>
+<ul>
+<li><h4 id="view的测量获取其宽高"><a href="#view的测量获取其宽高" class="headerlink" title="view的测量获取其宽高"></a>view的测量获取其宽高</h4>首先自定义一个view–PieChartView并让其继承View,然后重写测量View大小的方法onMeasure()并获取其宽高为绘制图做准备。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">	super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">	mWidth = MeasureSpec.getSize(widthMeasureSpec);</div><div class="line">	mHeight = MeasureSpec.getSize(heightMeasureSpec);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="view的绘制"><a href="#view的绘制" class="headerlink" title="view的绘制"></a>view的绘制</h5>view的绘制主要用到画布Canvas，以及画笔Paint。我们这时重写View的方法onDraw()。首先将画布的圆心移到View的中间（调用 canvas.translate(mWidth / 2, mHeight / 2)）,然后获取半径的长度，通过过相关的运算画出两部分不一样的饼状图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onDraw(Canvas canvas) &#123;</div><div class="line">    super.onDraw(canvas);</div><div class="line"></div><div class="line">    canvas.translate(mWidth / 2, mHeight / 2);//饼状图圆心移到中间</div><div class="line">    float r = (float) ((Math.min(mWidth, mHeight) / 2));//半径</div><div class="line">    RectF rectF = new RectF(-r, -r, r, r);</div><div class="line"></div><div class="line">    //男士的扇形图</div><div class="line">    mPaint.setStyle(Paint.Style.FILL);//填充</div><div class="line">    mPaint.setColor(Color.CYAN);</div><div class="line">    canvas.drawArc(rectF, -90, percent * 360, true, mPaint);</div><div class="line"></div><div class="line">    //女士的扇形图</div><div class="line">    mPaint.setStyle(Paint.Style.FILL);</div><div class="line">    mPaint.setColor(Color.RED);</div><div class="line">    canvas.drawArc(rectF, percent * 360 - 90, (1 - percent) * 360, true, mPaint);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="view的刷新"><a href="#view的刷新" class="headerlink" title="view的刷新"></a>view的刷新</h4>通过在布局文件调用两个seekbar控件，并通过监听OnSeekBarChangeListener()并调用View的刷新方法<br>setPercent(float percent)，最终调用重新绘制画布的方法invalidate()刷新View;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() &#123;</div><div class="line">        @Override</div><div class="line">        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) &#123;</div><div class="line">            if (seekBar.getId() == R.id.seekBar) &#123;</div><div class="line">                seekBar1.setProgress(progress);</div><div class="line">                seekBar2.setProgress(100 - progress);</div><div class="line">            &#125; else &#123;</div><div class="line">                seekBar2.setProgress(progress);</div><div class="line">                seekBar1.setProgress(100 - progress);</div><div class="line">            &#125;</div><div class="line">            pieChartView.setPercent((float) (1.0 * seekBar2.getProgress() / 100));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStartTrackingTouch(SeekBar seekBar) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStopTrackingTouch(SeekBar seekBar) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>参考：<a href="https://github.com/GcsSloop/AndroidNote/tree/master/CustomView" target="_blank" rel="external">从零起步，从入门到懵逼的自定义View教程</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/20/Android/recyclerview_filter/" itemprop="url">
                   Recyclerview搜索关键字过滤列表内容
                 </a>
@@ -378,7 +498,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
