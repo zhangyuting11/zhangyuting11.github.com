@@ -1,0 +1,649 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="EventBus3.0," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="EventBus is a publish/subscribe event bus optimized for Android.意思指的是EventBus是用来优化Android的一个可发布可订阅的事件总线。目前为止EventBus3.0是官方的最新版本。今天我们一起学习EventBus3.0的简单使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EventBus3.0的简单使用">
+<meta property="og:url" content="http://yoursite.com/2016/07/24/Android/thirdparty_eventbus/index.html">
+<meta property="og:site_name" content="张玉庭的博客">
+<meta property="og:description" content="EventBus is a publish/subscribe event bus optimized for Android.意思指的是EventBus是用来优化Android的一个可发布可订阅的事件总线。目前为止EventBus3.0是官方的最新版本。今天我们一起学习EventBus3.0的简单使用。">
+<meta property="og:updated_time" content="2016-07-27T05:17:15.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EventBus3.0的简单使用">
+<meta name="twitter:description" content="EventBus is a publish/subscribe event bus optimized for Android.意思指的是EventBus是用来优化Android的一个可发布可订阅的事件总线。目前为止EventBus3.0是官方的最新版本。今天我们一起学习EventBus3.0的简单使用。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6311858831571813000,
+      author: '博主张玉庭'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/24/Android/thirdparty_eventbus/"/>
+
+  <title> EventBus3.0的简单使用 | 张玉庭的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">张玉庭的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">zhangyuting</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                EventBus3.0的简单使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T22:31:01+08:00" content="2016-07-24">
+              2016-07-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/第三方使用教程/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方使用教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>EventBus is a publish/subscribe event bus optimized for Android.意思指的是EventBus是用来优化Android的一个可发布可订阅的事件总线。目前为止EventBus3.0是官方的最新版本。今天我们一起学习EventBus3.0的简单使用。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="关于EventBus3-0的使用流程"><a href="#关于EventBus3-0的使用流程" class="headerlink" title="关于EventBus3.0的使用流程"></a>关于EventBus3.0的使用流程</h3><ol>
+<li>注册与反注册</li>
+<li>发布事件以及订阅事件</li>
+<li>发布粘性事件以及订阅粘性时间</li>
+<li>创建一个通用的传递泛型的对象类以及EventConfig类</li>
+</ol>
+<h5 id="注册与反注册"><a href="#注册与反注册" class="headerlink" title="注册与反注册"></a>注册与反注册</h5><p>想要使用EventBus发布或者订阅事件首先第一步得在相应的Activity或者Fragment里面注册与反注册，当然我只是举个例子。你完全可以在Service或其他组件注册与反注册。如果app多处地方都有用到EventBus订阅时间建议写一个基类Activity或者写一个基类Fragment,在Activity或者是Fragment实现oncreate()、onActivityCreated()以及ondestroy()方法,并且分别做Eventbus的注册与反注册。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">EventBus.getDefault().register(this);//注册</div><div class="line">EventBus.getDefault().unregister(this);//反注册</div></pre></td></tr></table></figure>
+<h5 id="发布事件以及订阅事件"><a href="#发布事件以及订阅事件" class="headerlink" title="发布事件以及订阅事件"></a>发布事件以及订阅事件</h5><p>通过在Activity或者Fragment注册与反注册之后，我们就可以发布事件以及订阅事件了。在主线程中向已经打开的Activity或者Fragment发送事件，在MainActivity中订阅事件：以下分别是在默认发布线程接收，在主线程接收、在异步线程接收、在后台线程接收。接收的顺序：ASYNC–BACKGROUND–MAIN–POSTING。根据不同情况我们可以通过不同参数在不同线程中订阅事件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">EventBus.getDefault().post(new MessageEvent(EventConfig.POST, &quot;我发给MainActivity的信息&quot;));//发布事件</div><div class="line"></div><div class="line">/**</div><div class="line"> * 默认发布线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.POSTING)</div><div class="line">public void onPostEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST:</div><div class="line">            Log.e(&quot;IamMainActivity&quot;,&quot;POSTING&quot;+ (String) messageEvent.getData());</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 主线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.MAIN)</div><div class="line">public void onMainEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST:</div><div class="line">            Log.e(&quot;IamMainActivity&quot;,&quot;MAIN&quot;+ (String) messageEvent.getData());</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 异步线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.ASYNC)</div><div class="line">public void onAsyncEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST:</div><div class="line">            Log.e(&quot;IamMainActivity&quot;,&quot;ASYNC&quot;+ (String) messageEvent.getData());</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 后台线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.BACKGROUND)</div><div class="line">public void onBackgroundEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST:</div><div class="line">            Log.e(&quot;IamMainActivity&quot;,&quot;BACKGROUND&quot;+ (String) messageEvent.getData());</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="发布粘性事件以及订阅粘性事件："><a href="#发布粘性事件以及订阅粘性事件：" class="headerlink" title="发布粘性事件以及订阅粘性事件："></a>发布粘性事件以及订阅粘性事件：</h4><p>假入我们想要发布一个事件并在还未打开的Activity或者是Fragment中订阅这个事件，这时候我们可以用到发布粘性事件以及订阅粘性事件。意思是ActivityA现在发布一个事件，但是ActivityB还未启动，这时候我们通过发布粘性事件在ActivityB中订阅粘性事件。需要注意的一点是：在接收完粘性事件之后如果没有别的需求最好通过removeStickyEvent（Object object）将这个事件remove掉。否则它会一直保留到最后。粘性事件的订阅顺序：ASYNC–MAIN–POSTING– BACKGROUND。注意的是默认订阅事件是为非粘性事件，即sticky为false。假如我们想要接收粘性事件此时应该在订阅注解参数中添加sticky=true;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> //发布粘性事件</div><div class="line"> EventBus.getDefault().postSticky(new MessageEvent(EventConfig.POST_STICKY, &quot;我发给MainActivity2的信息&quot;));</div><div class="line"> MainActivity.this.startActivity(new Intent(MainActivity.this, Main2Activity.class));</div><div class="line"></div><div class="line"></div><div class="line"> /**</div><div class="line"> * 默认</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.POSTING, sticky = true)</div><div class="line">public void onPostEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST_STICKY:</div><div class="line">            Log.e(&quot;IamMainActivity2&quot;,&quot;POSTING&quot;+ (String) messageEvent.getData());</div><div class="line">            EventBus.getDefault().removeStickyEvent(messageEvent);//移除粘性事件</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 主线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.MAIN, sticky = true)</div><div class="line">public void onMainEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST_STICKY:</div><div class="line">            Log.e(&quot;IamMainActivity2&quot;,&quot;MAIN&quot;+ (String) messageEvent.getData());</div><div class="line">            EventBus.getDefault().removeStickyEvent(messageEvent);//移除粘性事件</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 异步线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)</div><div class="line">public void onAsyncEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST_STICKY:</div><div class="line">            Log.e(&quot;IamMainActivity2&quot;,&quot;ASYNC&quot;+ (String) messageEvent.getData());</div><div class="line">            EventBus.getDefault().removeStickyEvent(messageEvent);//移除粘性事件</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 后台线程</div><div class="line"> *</div><div class="line"> * @param messageEvent</div><div class="line"> */</div><div class="line">@Subscribe(threadMode = ThreadMode.BACKGROUND, sticky = true)</div><div class="line">public void onBackgroundEventBus(MessageEvent messageEvent) &#123;</div><div class="line">    switch (messageEvent.getEventCode()) &#123;</div><div class="line">        case EventConfig.POST_STICKY:</div><div class="line">            Log.e(&quot;IamMainActivity2&quot;,&quot;BACKGROUND&quot;+ (String) messageEvent.getData());</div><div class="line">            EventBus.getDefault().removeStickyEvent(messageEvent);//移除粘性事件</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建一个通用的传递泛型的对象类以及EventConfig类"><a href="#创建一个通用的传递泛型的对象类以及EventConfig类" class="headerlink" title="创建一个通用的传递泛型的对象类以及EventConfig类"></a>创建一个通用的传递泛型的对象类以及EventConfig类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">        </div><div class="line">/**</div><div class="line"> * EventBus 传递数据对象</div><div class="line"> * Created by zhangyuting on 2016/4/6.</div><div class="line"> */</div><div class="line">public class MessageEvent&lt;T&gt; &#123;</div><div class="line">    public static String TAG = &quot;MessageEvent&quot;;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * reserved data</div><div class="line">     */</div><div class="line">    private T data;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * this code distinguish between different events</div><div class="line">     */</div><div class="line">    private int eventCode = -1;</div><div class="line"></div><div class="line">    public MessageEvent(int eventCode) &#123;</div><div class="line">        this(eventCode, null);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MessageEvent(int eventCode, T data) &#123;</div><div class="line">        this.eventCode = eventCode;</div><div class="line">        this.data = data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * get event code</div><div class="line">     *</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public int getEventCode() &#123;</div><div class="line">        Log.i(TAG, String.valueOf(eventCode));</div><div class="line">        return this.eventCode;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * get event reserved data</div><div class="line">     *</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public T getData() &#123;</div><div class="line">        Log.i(TAG, String.valueOf(data));</div><div class="line">        return this.data;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line"> * EventBus 相关变量</div><div class="line"> * Created by zhangyuting on 2016/4/6.</div><div class="line"> */</div><div class="line">public class EventConfig &#123;</div><div class="line"></div><div class="line">    public static final int POST = 10;</div><div class="line">    public static final int POST_STICKY = 11;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就是EventBus3.0的简单实用步骤。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://coding.net/u/zhangyuting193/p/File/git/raw/master/AD9B.tmp.png" alt="zhangyuting WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/EventBus3-0/" rel="tag">#EventBus3.0</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/23/Android/myview_pie/" rel="next" title="MyViewDemo之饼状图">
+                <i class="fa fa-chevron-left"></i> MyViewDemo之饼状图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/25/Android/thirdparty_rxjava/" rel="prev" title="RxJava的简单使用">
+                RxJava的简单使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/13360129?v=3&s=460"
+               alt="zhangyuting" />
+          <p class="site-author-name" itemprop="name">zhangyuting</p>
+          <p class="site-description motion-element" itemprop="description">https://github.com/zhangyuting11</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangyuting11" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于EventBus3-0的使用流程"><span class="nav-number">1.</span> <span class="nav-text">关于EventBus3.0的使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注册与反注册"><span class="nav-number">1.0.1.</span> <span class="nav-text">注册与反注册</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发布事件以及订阅事件"><span class="nav-number">1.0.2.</span> <span class="nav-text">发布事件以及订阅事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布粘性事件以及订阅粘性事件："><span class="nav-number">1.1.</span> <span class="nav-text">发布粘性事件以及订阅粘性事件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个通用的传递泛型的对象类以及EventConfig类"><span class="nav-number">1.2.</span> <span class="nav-text">创建一个通用的传递泛型的对象类以及EventConfig类</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangyuting</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
