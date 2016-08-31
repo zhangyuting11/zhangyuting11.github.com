@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自定义View," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,27 +84,16 @@
 
 
 
-<meta name="description" content="今天在空余时间学了一会关于自定义View的实现, 想着以后在MyViewDemo做一系列的有意思的自定义View。这一次的自定义view实践主要了解一下自定义view的实现过程
-
-
-Demo展示">
+<meta name="description" content="Android6.0推出了动态权限管理。动态权限管理的添加方便了用户隐私的保护，同时也让开发者添加了多一些代码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyViewDemo之饼状图">
-<meta property="og:url" content="http://yoursite.com/2016/07/23/Android/myview_pie/index.html">
+<meta property="og:title" content="Android动态权限">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/Android/m_permission/index.html">
 <meta property="og:site_name" content="张玉庭的博客">
-<meta property="og:description" content="今天在空余时间学了一会关于自定义View的实现, 想着以后在MyViewDemo做一系列的有意思的自定义View。这一次的自定义view实践主要了解一下自定义view的实现过程
-
-
-Demo展示">
-<meta property="og:image" content="https://github.com/zhangyuting11/MyViewDemo/raw/master/gif/gifpie.gif">
-<meta property="og:updated_time" content="2016-07-29T07:20:33.079Z">
+<meta property="og:description" content="Android6.0推出了动态权限管理。动态权限管理的添加方便了用户隐私的保护，同时也让开发者添加了多一些代码。">
+<meta property="og:updated_time" content="2016-08-31T15:00:12.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyViewDemo之饼状图">
-<meta name="twitter:description" content="今天在空余时间学了一会关于自定义View的实现, 想着以后在MyViewDemo做一系列的有意思的自定义View。这一次的自定义view实践主要了解一下自定义view的实现过程
-
-
-Demo展示">
-<meta name="twitter:image" content="https://github.com/zhangyuting11/MyViewDemo/raw/master/gif/gifpie.gif">
+<meta name="twitter:title" content="Android动态权限">
+<meta name="twitter:description" content="Android6.0推出了动态权限管理。动态权限管理的添加方便了用户隐私的保护，同时也让开发者添加了多一些代码。">
 
 
 
@@ -125,9 +114,9 @@ Demo展示">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/23/Android/myview_pie/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/31/Android/m_permission/"/>
 
-  <title> MyViewDemo之饼状图 | 张玉庭的博客 </title>
+  <title> Android动态权限 | 张玉庭的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +256,7 @@ Demo展示">
             
             
               
-                MyViewDemo之饼状图
+                Android动态权限
               
             
           </h1>
@@ -279,8 +268,8 @@ Demo展示">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-23T21:53:09+08:00" content="2016-07-23">
-              2016-07-23
+            <time itemprop="dateCreated" datetime="2016-08-31T22:16:37+08:00" content="2016-08-31">
+              2016-08-31
             </time>
           </span>
 
@@ -293,8 +282,8 @@ Demo展示">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/自定义View/" itemprop="url" rel="index">
-                    <span itemprop="name">自定义View</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -327,34 +316,12 @@ Demo展示">
 
       
         <blockquote>
-<p>今天在空余时间学了一会关于自定义View的实现, 想着以后在<a href="https://github.com/zhangyuting11/MyViewDemo" target="_blank" rel="external">MyViewDemo</a><br>做一系列的有意思的自定义View。这一次的自定义view实践主要了解一下自定义view的实现过程</p>
+<p>Android6.0推出了动态权限管理。动态权限管理的添加方便了用户隐私的保护，同时也让开发者添加了多一些代码。</p>
 </blockquote>
-<ul>
-<li><h4 id="Demo展示"><a href="#Demo展示" class="headerlink" title="Demo展示"></a>Demo展示</h4><p><img src="https://github.com/zhangyuting11/MyViewDemo/raw/master/gif/gifpie.gif" alt="image">   </p>
 <a id="more"></a>
-</li>
-</ul>
-<ul>
-<li><h4 id="关于View的实现过程"><a href="#关于View的实现过程" class="headerlink" title="关于View的实现过程"></a>关于View的实现过程</h4></li>
-</ul>
-<ol>
-<li>view的测量获取其宽高</li>
-<li>view的绘制</li>
-<li>view的刷新</li>
-</ol>
-<ul>
-<li><h4 id="view的测量获取其宽高"><a href="#view的测量获取其宽高" class="headerlink" title="view的测量获取其宽高"></a>view的测量获取其宽高</h4>首先自定义一个view–PieChartView并让其继承View,然后重写测量View大小的方法onMeasure()并获取其宽高为绘制图做准备。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">	super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">	mWidth = MeasureSpec.getSize(widthMeasureSpec);</div><div class="line">	mHeight = MeasureSpec.getSize(heightMeasureSpec);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><h5 id="view的绘制"><a href="#view的绘制" class="headerlink" title="view的绘制"></a>view的绘制</h5>view的绘制主要用到画布Canvas，以及画笔Paint。我们这时重写View的方法onDraw()。首先将画布的圆心移到View的中间（调用 canvas.translate(mWidth / 2, mHeight / 2)）,然后获取半径的长度，通过过相关的运算画出两部分不一样的饼状图</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onDraw(Canvas canvas) &#123;</div><div class="line">    super.onDraw(canvas);</div><div class="line"></div><div class="line">    canvas.translate(mWidth / 2, mHeight / 2);//饼状图圆心移到中间</div><div class="line">    float r = (float) ((Math.min(mWidth, mHeight) / 2));//半径</div><div class="line">    RectF rectF = new RectF(-r, -r, r, r);</div><div class="line"></div><div class="line">    //男士的扇形图</div><div class="line">    mPaint.setStyle(Paint.Style.FILL);//填充</div><div class="line">    mPaint.setColor(Color.CYAN);</div><div class="line">    canvas.drawArc(rectF, -90, percent * 360, true, mPaint);</div><div class="line"></div><div class="line">    //女士的扇形图</div><div class="line">    mPaint.setStyle(Paint.Style.FILL);</div><div class="line">    mPaint.setColor(Color.RED);</div><div class="line">    canvas.drawArc(rectF, percent * 360 - 90, (1 - percent) * 360, true, mPaint);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="view的刷新"><a href="#view的刷新" class="headerlink" title="view的刷新"></a>view的刷新</h4>通过在布局文件调用两个seekbar控件，并通过监听OnSeekBarChangeListener()并调用View的刷新方法<br>setPercent(float percent)，最终调用重新绘制画布的方法invalidate()刷新View;</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() &#123;</div><div class="line">        @Override</div><div class="line">        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) &#123;</div><div class="line">            if (seekBar.getId() == R.id.seekBar) &#123;</div><div class="line">                seekBar1.setProgress(progress);</div><div class="line">                seekBar2.setProgress(100 - progress);</div><div class="line">            &#125; else &#123;</div><div class="line">                seekBar2.setProgress(progress);</div><div class="line">                seekBar1.setProgress(100 - progress);</div><div class="line">            &#125;</div><div class="line">            pieChartView.setPercent((float) (1.0 * seekBar2.getProgress() / 100));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStartTrackingTouch(SeekBar seekBar) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStopTrackingTouch(SeekBar seekBar) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
-<p>参考：<a href="https://github.com/GcsSloop/AndroidNote/tree/master/CustomView" target="_blank" rel="external">从零起步，从入门到懵逼的自定义View教程</a></p>
+<h4 id="动态权限的使用前提"><a href="#动态权限的使用前提" class="headerlink" title="动态权限的使用前提"></a>动态权限的使用前提</h4><p>动态权限管理的使用首先用户的手机系统必须是Android6.0及以上。以及应用程序build.gradle的compileSdkVersion和targetSdkVersion都要设置为23<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">compileSdkVersion 23</div><div class="line">buildToolsVersion &quot;24.0.1&quot;</div><div class="line"></div><div class="line">defaultConfig &#123;</div><div class="line">    applicationId &quot;com.honso.visitcustomer&quot;</div><div class="line">    minSdkVersion 15</div><div class="line">    targetSdkVersion 23</div><div class="line">    versionCode 1</div><div class="line">    versionName &quot;1.0&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="动态权限实用类"><a href="#动态权限实用类" class="headerlink" title="动态权限实用类"></a>动态权限实用类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">public class MPermissionUtils &#123;</div><div class="line">    private static final MPermissionUtils instance = new MPermissionUtils();</div><div class="line"></div><div class="line">    public static MPermissionUtils getInstance() &#123;</div><div class="line">        return MPermissionUtils.instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 申请多个权限</div><div class="line">     *</div><div class="line">     * @param context     Activity对象</div><div class="line">     * @param permissions 权限列表</div><div class="line">     * @param requestCode 请求码</div><div class="line">     */</div><div class="line">    @TargetApi(Build.VERSION_CODES.M)</div><div class="line">    public void addPermissionsCheck(Activity context, String[] permissions, int requestCode, onPermissionAgreeListener listener) &#123;</div><div class="line">        //检测是否拥有权限</div><div class="line">        if (ContextCompat.checkSelfPermission(context, permissions[0]) != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">            //申请权限</div><div class="line">            ActivityCompat.requestPermissions(context, permissions, requestCode);</div><div class="line">        &#125; else &#123;</div><div class="line">            listener.onAgree(requestCode, permissions);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 申请多个权限</div><div class="line">     *</div><div class="line">     * @param context     Activity对象</div><div class="line">     * @param permissions 权限列表</div><div class="line">     * @param requestCode 请求码</div><div class="line">     */</div><div class="line">    @TargetApi(Build.VERSION_CODES.M)</div><div class="line">    public void addPermissionsCheck(Fragment context, String[] permissions, int requestCode, onPermissionAgreeListener listener) &#123;</div><div class="line">        for (int i = 0; i &lt; permissions.length; i++) &#123;</div><div class="line">            //检测是否拥有权限</div><div class="line">            if (context.getActivity().checkSelfPermission(permissions[i]) != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                //申请权限</div><div class="line">                context.requestPermissions(permissions, requestCode);</div><div class="line">            &#125; else &#123;</div><div class="line">                listener.onAgree(requestCode, permissions);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public interface onPermissionAgreeListener &#123;</div><div class="line">        void onAgree(int requestCode, String[] permissions);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="动态权限应用"><a href="#动态权限应用" class="headerlink" title="动态权限应用"></a>动态权限应用</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//申请动态权限，这些属于危险权限就需要通过动态权限申请。并且在Manifest.xml也要声明。</div><div class="line">private void checkPermission() &#123;</div><div class="line">    MPermissionUtils.getInstance().addPermissionsCheck(</div><div class="line">            this, new String[]&#123;</div><div class="line">                    Manifest.permission.ACCESS_FINE_LOCATION,</div><div class="line">                    Manifest.permission.ACCESS_COARSE_LOCATION,</div><div class="line">                    Manifest.permission.READ_PHONE_STATE,</div><div class="line">                    Manifest.permission.WRITE_EXTERNAL_STORAGE,</div><div class="line">                    Manifest.permission.CAMERA,</div><div class="line">                    Manifest.permission.CALL_PHONE</div><div class="line">            &#125;,</div><div class="line">            PERMISSION_LOCATION_CODE,</div><div class="line">            new MPermissionUtils.onPermissionAgreeListener() &#123;</div><div class="line">                @Override</div><div class="line">                public void onAgree(int requestCode, String[] permissions) &#123;</div><div class="line">                    bindService(new Intent(MainActivity.this, LocationService.class), MainActivity.this, Context.BIND_AUTO_CREATE);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//重写这个方法</div><div class="line">@Override</div><div class="line">public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">    super.onRequestPermissionsResult(requestCode, permissions, grantResults);</div><div class="line">    switch (requestCode) &#123;</div><div class="line">        case PERMISSION_LOCATION_CODE:</div><div class="line">            if (grantResults.length &gt; 0) &#123;</div><div class="line">                for (int i = 0; i &lt; grantResults.length; i++) &#123;</div><div class="line">                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                        bindService(new Intent(MainActivity.this, LocationService.class), this, Context.BIND_AUTO_CREATE);</div><div class="line">                    &#125; else &#123;</div><div class="line">                        checkPermission();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125; else &#123;</div><div class="line">                checkPermission();</div><div class="line">            &#125;</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -393,7 +360,7 @@ Demo展示">
       
         <div class="post-tags">
           
-            <a href="/tags/自定义View/" rel="tag">#自定义View</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
       
@@ -402,17 +369,13 @@ Demo展示">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/20/Android/recyclerview_filter/" rel="next" title="Recyclerview搜索关键字过滤列表内容">
-                <i class="fa fa-chevron-left"></i> Recyclerview搜索关键字过滤列表内容
+              <a href="/2016/07/29/Android/thirdparty_retrofit/" rel="next" title="Retrofit的简单使用">
+                <i class="fa fa-chevron-left"></i> Retrofit的简单使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/24/Android/thirdparty_eventbus/" rel="prev" title="EventBus3.0的简单使用">
-                EventBus3.0的简单使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,7 +500,7 @@ Demo展示">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Demo展示"><span class="nav-number">1.</span> <span class="nav-text">Demo展示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于View的实现过程"><span class="nav-number">2.</span> <span class="nav-text">关于View的实现过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#view的测量获取其宽高"><span class="nav-number">3.</span> <span class="nav-text">view的测量获取其宽高</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#view的绘制"><span class="nav-number">3.1.</span> <span class="nav-text">view的绘制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#view的刷新"><span class="nav-number">4.</span> <span class="nav-text">view的刷新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#动态权限的使用前提"><span class="nav-number">1.</span> <span class="nav-text">动态权限的使用前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态权限实用类"><span class="nav-number">2.</span> <span class="nav-text">动态权限实用类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态权限应用"><span class="nav-number">3.</span> <span class="nav-text">动态权限应用</span></a></li></ol></div>
             
           </div>
         </section>
